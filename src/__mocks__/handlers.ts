@@ -1,12 +1,44 @@
 import { HttpResponse, http } from 'msw'
 
+const todoItems = [
+  {
+    id: '1',
+    name: 'Query 1',
+    description:
+      '🤖 Powerful asynchronous state management, server-state utilities and data fetching for the web. TS/JS, React Query, Solid Query, Svelte Query and Vue Query.',
+    subscribers_count: 187281,
+    forks_count: 78,
+  },
+  {
+    id: '2',
+    name: 'Query 2',
+    description:
+      '🤖 Powerful asynchronous state management, server-state utilities and data fetching for the web. TS/JS, React Query, Solid Query, Svelte Query and Vue Query.',
+    subscribers_count: 8971,
+    forks_count: 98,
+  },
+  {
+    id: '3',
+    name: 'Query 3',
+    description:
+      '🤖 Powerful asynchronous state management, server-state utilities and data fetching for the web. TS/JS, React Query, Solid Query, Svelte Query and Vue Query.',
+    subscribers_count: 7431,
+    forks_count: 96,
+  },
+  {
+    id: '4',
+    name: 'Query 4',
+    description:
+      '🤖 Powerful asynchronous state management, server-state utilities and data fetching for the web. TS/JS, React Query, Solid Query, Svelte Query and Vue Query.',
+    subscribers_count: 656769,
+    forks_count: 4,
+  },
+]
+
 export const handlers = [
-  http.get('https://api.github.com/repos/eruptionjs/core', () => {
-    return HttpResponse.json({
-      name: 'core',
-      full_name: 'eruptionjs/core',
-      html_url: 'https://github.com/eruptionjs/core',
-      description: 'Boilerplate for React/Typescript, built on top of Vite ⚡️',
-    })
+  http.get('/matches', () => {
+    return HttpResponse.json(todoItems)
   }),
+
+  // ...other request handlers.
 ]

@@ -14,6 +14,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/stylistic',
     'plugin:prettier/recommended',
+    "plugin:@tanstack/eslint-plugin-query/recommended",
     'prettier',
   ],
   settings: {
@@ -54,7 +55,7 @@ module.exports = {
     'import/no-relative-parent-imports': 'error',
     'import/consistent-type-specifier-style': ['error', 'prefer-inline'],
     'import/no-empty-named-blocks': 'error',
-    'import/no-extraneous-dependencies': 'error',
+    'import/no-extraneous-dependencies': 'off',
     'import/no-import-module-exports': 'error',
     'import/newline-after-import': 'error',
     'import/group-exports': 'error',
