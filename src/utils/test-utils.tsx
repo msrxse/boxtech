@@ -1,40 +1,53 @@
-import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { render } from '@testing-library/react'
+import React, { ReactElement, ReactNode } from 'react'
 
-type WrapperProps = { children: React.ReactNode }
+import { QueryClient, QueryClientConfig, QueryClientProvider } from '@tanstack/react-query'
+import { RenderOptions, render } from '@testing-library/react'
 
-const createCache = () => new QueryCache()
+type IExtendedRenderOptions = RenderOptions
 
-const createTestClient = () =>
-  new QueryClient({
+/**
+ * Using a helper function like this to create an isolated wrapper
+ * so the query-cache doesn not get reused in between tests
+ */
+const customRenderForHooks = () => {
+  const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
         retry: false,
-        gcTime: Infinity,
       },
     },
   })
 
-const createQueryHookWrapper = () => {
-  const queryClient = createTestClient()
-
-  const wrapper = ({ children }: WrapperProps) => (
+  return ({ children }: { children: ReactNode }) => (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   )
-
-  return wrapper
 }
 
-const renderWithQueryClient = (component: React.ReactElement) => {
-  const queryClient = createTestClient()
-  const { rerender, ...rest } = render(
-    <QueryClientProvider client={queryClient}>{component}</QueryClientProvider>,
-  )
-  return {
-    ...rest,
-    rerender: (comp: React.ReactElement) =>
-      rerender(<QueryClientProvider client={queryClient}>{comp}</QueryClientProvider>),
+function setupQueryClient(config?: QueryClientConfig | undefined) {
+  if (!config) {
+    return new QueryClient({
+      defaultOptions: {
+        queries: {
+          retry: false,
+        },
+      },
+    })
   }
+  return new QueryClient(config)
 }
 
-export { createCache, createTestClient, createQueryHookWrapper, renderWithQueryClient }
+const customRender = (ui: ReactElement, options?: Omit<IExtendedRenderOptions, 'wrapper'>) => {
+  const queryClient = setupQueryClient()
+  const Wrapper = ({ children }: { children: React.ReactNode }) => {
+    return (
+      <>
+        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      </>
+    )
+  }
+  return render(ui, { wrapper: Wrapper, ...options })
+}
+
+// Ordering of exports is important here, as the second line overrides RTL's render function
+export * from '@testing-library/react'
+export { customRender as render, setupQueryClient, customRenderForHooks }

@@ -79,5 +79,8 @@ module.exports = {
     ],
 
     'react-refresh/only-export-components': ['error', { allowConstantExport: true }],
+
+    "react/display-name": "off",
+    "react-refresh/only-export-components": "off"
   },
 }
