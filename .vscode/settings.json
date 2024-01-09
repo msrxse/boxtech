@@ -20,7 +20,7 @@
   "html.format.templating": true,
   // prettier settings
   "prettier.requireConfig": true,
-  "prettier.prettierPath": "./node_modules/prettier",
+  "prettier.prettierPath": "./node_modules/prettier/index.cjs",
   // doc formatters
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
@@ -46,6 +46,9 @@
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+
+  // Terminal
+  "terminal.integrated.showExitAlert": false,
 
   "eslint.format.enable": true,
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"]

@@ -2,8 +2,6 @@
 
 > Boilerplate for React/Typescript, built on top of Vite ⚡️
 
-_It's fast! Even the tests are fast, thanks to Vite with Vitest ⚡️_
-
 # What's in the boilerplate
 
 - [Vite](https://vitejs.dev/)
@@ -11,30 +9,41 @@ _It's fast! Even the tests are fast, thanks to Vite with Vitest ⚡️_
 - [Typescript](https://www.typescriptlang.org/)
 - [Vitest](https://vitest.dev/)
 - [Testing Library](https://testing-library.com/)
+- [MSW](https://mswjs.io/)
+- [react-query](https://tanstack.com/query/latest/docs/react/overview)
 - Dev Tools
   - [ESLint](https://eslint.org/)
+  - [Stylelint](https://stylelint.io/)
   - [Prettier](https://prettier.io/)
   - [CommitLint](https://commitlint.js.org/#/)
   - [Husky](https://typicode.github.io/husky/#/)
   - [Lint-Staged](https://github.com/okonet/lint-staged)
 
-# Installation
+# To start development server:
 
-There are two ways to install Eruption: using the template directly from GitHub (through the "Use Template" button), or using the [CLI](https://www.npmjs.com/package/create-eruption).
+run
 
-If you want to use the CLI, run the following command on your terminal:
-
-```Bash
-npm init eruption@latest
+```
+pnpm dev
 ```
 
-then, to start the project
+Next, open your browser and visit http://localhost:4000/. The default React project will be running on port 4000.
 
-```Bash
-cd your-project-name
-npm install
-npm run dev
-```
+# Project structure
+
+> This project is based on the [Eruption](https://github.com/eruptionjs/core) template.
+
+This project is a simple example of a React application that uses MSW to mock API requests. All requests are mocked in the `src/__mocks__/handlers.ts` file.
+
+To fetch data from the API, the application uses `react-query`.
+
+The MSW files are located in the mocks folder. The `src/__mocks__/browser.ts` file is the entry point for the MSW worker. The src/mocks/handlers.ts file contains the handlers for the mocked requests.
+
+The other related files are:
+
+- `src/services`: the file that contains an axios instance to fetch data from the API.
+- `src/hooks` : the file that contains the useQuery hook to fetch data from the API.
+- `src/components/HLTVMatches`: the file that contains the component that renders the fetched data.
 
 ## Using with Docker
 
@@ -65,10 +74,6 @@ _By default it uses port 80_
 
 The production Dockerfile uses an nginx instance to run the built website, for more configuration options, see [nginx's dockerhub page](https://hub.docker.com/_/nginx)
 
-## Try it online
-
-Want to try Eruption without clone local? Try it on [StackBlitz](https://stackblitz.com/fork/github/eruptionjs/core)
-
 # Commits
 
 This project have commits configured to follow the Conventional Commits's best practice and it's configured with ESLint, Prettier and Stylelint.
@@ -89,11 +94,14 @@ As a best practice, it is strongly recommended that you do not skip the validati
 
 Check out [commitlint](https://commitlint.js.org/#/) docs to see further configurations that you can do.
 
-# Motivation
+# Useful links
 
-Everything started because I was in need of a good, solid, reliable and fast boilerplate to work with React/Typescript projects. I was working with Create-React-App and Webpack but both of them wasn't that good at all, specially in performance. Later on I discovered that I could use Vite to replace Webpack, so here we are now. =)
-
-I believe that Eruption as it is right now, is an excellent starting point to any React/Typescript project, with enough dev tools to help you to write the best software possible and ship to production without any headaches.
+- [How to set up a react project with vite](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-react-project-with-vite)
+- [Adding eslint and prettier to a vitejs react project](https://dev.to/marcosdiasdev/adding-eslint-and-prettier-to-a-vitejs-react-project-2kkj)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [How to setup MSW in a React project using Vite](https://www.raisiqueira.io/drops/vite-msw)
+- [Vitest](https://vitest.dev/guide/#overview) -[A Reusable Way to Test React Components that Make Use of React Context](https://medium.com/@janesfrontenddiary/a-reusable-way-to-test-react-components-that-make-use-of-react-context-a82150344c46)
+- [example-msw-vite - github repo](https://github.com/raisiqueira/example-msw-vite)
 
 # License
 
