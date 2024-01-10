@@ -1,8 +1,8 @@
-# Eruption 🌋
+# Boxtech 🌋
 
-> Boilerplate for React/Typescript, built on top of Vite ⚡️
+> Boxtech Global Container Database contains technical attributes of shipping containers for use in applications and automation
 
-# What's in the boilerplate
+# Stack
 
 - [Vite](https://vitejs.dev/)
 - [React](https://reactjs.org/)
@@ -18,6 +18,10 @@
   - [CommitLint](https://commitlint.js.org/#/)
   - [Husky](https://typicode.github.io/husky/#/)
   - [Lint-Staged](https://github.com/okonet/lint-staged)
+
+# TODOS
+
+- [ ] Add react-window and generate initial grid with stub data from [BIC Global Container Database swaggerhub account](https://app.swaggerhub.com/apis/BIC-ORG/Boxtech/2.0.3#/Container/get_container__containerNumber_)
 
 # To start development server:
 
